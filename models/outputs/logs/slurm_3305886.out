@@ -1,0 +1,118 @@
+### Starting TaskPrologue of job 3305886 on a0121 at Wed Jan 28 01:17:16 CET 2026
+Running on cores 96-111 with governor ondemand
+Wed Jan 28 01:17:16 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.48.01              Driver Version: 590.48.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A40                     On  |   00000000:C1:00.0 Off |                  Off |
+|  0%   34C    P8             22W /  300W |       0MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+### Finished TaskPrologue
+
+2026-01-28 01:17:43,317 | INFO | Logging initialized
+2026-01-28 01:17:43,317 | INFO | Log file: /home/vault/b192aa/b192aa44/cardio_project/outputs/logs/run_20260128_011743.log
+2026-01-28 01:17:43,317 | INFO | Base directory: /home/vault/b192aa/b192aa44/cardio_project
+2026-01-28 01:17:43,317 | INFO | Running on HPC: True
+2026-01-28 01:17:43,660 | INFO | Loaded model-ready artifacts from /home/vault/b192aa/b192aa44/cardio_project/processed
+2026-01-28 01:17:43,660 | INFO | X_train shape: (247083, 29)
+2026-01-28 01:17:43,660 | INFO | X_test shape: (61771, 29)
+2026-01-28 01:17:43,661 | INFO | Optimizing Logistic Regression (sequential trials)...
+2026-01-28 02:10:26,970 | INFO | Optimizing XGBoost (sequential trials)...
+2026-01-28 02:19:50,236 | INFO | Optimizing CatBoost (sequential trials)...
+2026-01-28 02:44:42,544 | INFO | Best PR-AUC (LR): 0.3073 | Log Loss: 0.5122
+2026-01-28 02:44:42,545 | INFO | Best PR-AUC (XGB): 0.3096 | Log Loss: 0.5043
+2026-01-28 02:44:42,545 | INFO | Best PR-AUC (CAT): 0.3097 | Log Loss: 0.5024
+2026-01-28 02:44:42,546 | INFO | Training Logistic Regression (Tuned)...
+2026-01-28 02:44:44,222 | INFO | Training XGBoost (Tuned)...
+2026-01-28 02:44:45,208 | INFO | Training CatBoost (Tuned, OHE)...
+2026-01-28 02:44:48,889 | INFO | 
+[METRICS] Classification Report for Logistic Regression (Tuned) (Threshold: 0.4412):
+              precision    recall  f1-score   support
+
+  No Disease     0.9810    0.6808    0.8038     56777
+     Disease     0.1898    0.8502    0.3104      4994
+
+    accuracy                         0.6945     61771
+   macro avg     0.5854    0.7655    0.5571     61771
+weighted avg     0.9171    0.6945    0.7639     61771
+
+2026-01-28 02:44:48,941 | INFO | 
+[METRICS] Classification Report for XGBoost (Tuned) (Threshold: 0.4606):
+              precision    recall  f1-score   support
+
+  No Disease     0.9811    0.6860    0.8075     56777
+     Disease     0.1923    0.8500    0.3137      4994
+
+    accuracy                         0.6993     61771
+   macro avg     0.5867    0.7680    0.5606     61771
+weighted avg     0.9174    0.6993    0.7675     61771
+
+2026-01-28 02:44:48,993 | INFO | 
+[METRICS] Classification Report for CatBoost (Tuned, OHE) (Threshold: 0.4507):
+              precision    recall  f1-score   support
+
+  No Disease     0.9811    0.6842    0.8061     56777
+     Disease     0.1914    0.8500    0.3125      4994
+
+    accuracy                         0.6976     61771
+   macro avg     0.5862    0.7671    0.5593     61771
+weighted avg     0.9172    0.6976    0.7662     61771
+
+2026-01-28 02:45:07,592 | INFO | Overall winner (calibrated): Calibrated CatBoost (Tuned, OHE)
+2026-01-28 02:45:07,605 | INFO | 
+[FINAL RESULTS] Classification Report for Calibrated CatBoost (Tuned, OHE):
+2026-01-28 02:45:07,605 | INFO | Using Clinical Threshold: 0.0719
+2026-01-28 02:45:07,605 | INFO | 
+              precision    recall  f1-score   support
+
+  No Disease     0.9811    0.6811    0.8040     56777
+     Disease     0.1900    0.8506    0.3106      4994
+
+    accuracy                         0.6948     61771
+   macro avg     0.5855    0.7658    0.5573     61771
+weighted avg     0.9171    0.6948    0.7641     61771
+
+2026-01-28 02:45:08,186 | INFO | Saved plot: /home/vault/b192aa/b192aa44/cardio_project/outputs/plots/calibration_curve_20260128_024507.png
+2026-01-28 02:45:08,432 | INFO | Saved plot: /home/vault/b192aa/b192aa44/cardio_project/outputs/plots/roc_curve_20260128_024508.png
+2026-01-28 02:45:08,692 | INFO | Saved plot: /home/vault/b192aa/b192aa44/cardio_project/outputs/plots/precision_recall_curve_20260128_024508.png
+2026-01-28 02:45:08,948 | INFO | Saved plot: /home/vault/b192aa/b192aa44/cardio_project/outputs/plots/confusion_matrix_20260128_024508.png
+2026-01-28 02:45:09,000 | INFO | Saved model artifact: /home/vault/b192aa/b192aa44/cardio_project/outputs/models/best_model.joblib
+2026-01-28 02:45:09,000 | INFO | Saved metadata: /home/vault/b192aa/b192aa44/cardio_project/outputs/models/metadata.json
+{"id":"W7yZ6qKVhw1p","time":1769564710,"expires":1769607910,"event":"message","topic":"cardio_job_b192aa44","title":"Cardio Job Success","message":"Job Successful! best_model.joblib is ready in outputs/models/.","priority":4,"tags":["white_check_mark","rocket"]}
+=== JOB_STATISTICS ===
+=== current date     : Wed Jan 28 02:45:10 CET 2026
+= Job-ID             : 3305886 on alex
+= Job-Name           : cardio_optuna
+= Job-Command        : /home/vault/b192aa/b192aa44/cardio_project/run_optuna_job.sh
+= Initial workdir    : /home/vault/b192aa/b192aa44/cardio_project
+= Queue/Partition    : a40
+= Slurm account      : b192aa with QOS=normal
+= Requested resources:  for 04:00:00
+= Elapsed runtime    : 01:27:55
+= Total RAM usage    : 1.7 GiB of assigned  GiB (%)
+= Node list          : a0121
+= Subm/Elig/Start/End: 2026-01-28T01:17:00 / 2026-01-28T01:17:00 / 2026-01-28T01:17:15 / 2026-01-28T02:45:10
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc            8.6G   104.9G   209.7G        N/A  47,268      500K   1,000K        N/A    
+    /home/vault         20.2G  1048.6G  2097.2G        N/A      55K     200K     400K        N/A    
+    atuin.rrze.uni-erlangen.de:/srv/home    10.0G     0.0K     0.0K        N/A  31,910                           N/A    
+    /lustre              4.0K     0.0K     0.0K        N/A       1       80K     250K        N/A    
+======================
+=== GPU utilization ==
+gpu_name, gpu_bus_id, pid, gpu_utilization [%], mem_utilization [%], max_memory_usage [MiB], time [ms]
+NVIDIA A40, 00000000:C1:00.0, 251443, 57 %, 4 %, 46130 MiB, 2082649 ms

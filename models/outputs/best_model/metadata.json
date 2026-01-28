@@ -1,0 +1,32 @@
+{
+  "random_state": 42,
+  "train_size": 247083,
+  "test_size": 61771,
+  "best_hyperparameters": {
+    "logistic_regression": {
+      "C": 0.035137249101880076,
+      "l1_ratio": 0.9865656424274671
+    },
+    "xgboost": {
+      "n_estimators": 619,
+      "max_depth": 4,
+      "learning_rate": 0.012163468977356626,
+      "min_child_weight": 4,
+      "subsample": 0.7949114026415486,
+      "colsample_bytree": 0.7878061677391148,
+      "reg_alpha": 2.0923118390637214e-07,
+      "reg_lambda": 0.5879889015828157
+    },
+    "catboost": {
+      "iterations": 363,
+      "depth": 6,
+      "learning_rate": 0.048923067592826115,
+      "l2_leaf_reg": 0.3503265014952717,
+      "bagging_temperature": 0.16823513536625426,
+      "border_count": 224
+    }
+  },
+  "optimized_clinical_threshold": 0.07193743210058046,
+  "overall_winner": "Calibrated CatBoost (Tuned, OHE)",
+  "run_timestamp": "2026-01-28T02:45:08.996147"
+}
